@@ -1,0 +1,5 @@
+# Ignore everything
+amia2018.zip
+main.*
+!main.tex
+.DS_Store
