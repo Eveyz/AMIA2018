@@ -1,13 +1,10 @@
 \documentclass{amia}
 \usepackage{graphicx}
-\usepackage{pdfpages}
-\usepackage{subfig}
 \usepackage[labelfont=bf]{caption}
 \usepackage[superscript,nomove]{cite}
 \usepackage{enumitem}
 \usepackage{multicol}
 \usepackage{multirow}
-\usepackage{booktabs}
 \usepackage{wrapfig}
 
 \begin{document}
@@ -36,7 +33,7 @@ Pressure Ulcer and Deep Tissue Injury are serious and costly complications for s
 
 Primary PU/DTI prevention seeks to prevent the initial incidence of any tissue damage, while secondary PU/DTI prevention seeks to decrease chronic recurrence of tissue breakdown for the individual ~\cite{ref7}. It has been estimated that PU prevention is approximately 2.5 times more economical than treatment ~\cite{ref8}. Clinical practice guidelines (CPG) provide best practice recommendations. However, the many recommendations in a CPG reflect the multivariate nature of PU/DTI management. There is limited guidance on how to prioritize based on individual cases. The Agency for Health Care Policy and Research (AHCPR) have long recognized that there is a significant need to increase education and quality improvement methods ~\cite{ref9}. Forward thinking tactics are essential for the development of effective PU/DTI management tools to address this major consequence of SCI and guide personalized best practices for each individual.
 
-In order to successfully prevent and treat PU/DTI in the SCI population, it is essential to consider multiple risk factors because they contribute to the formulation of treatment and rehabilitation strategies ~\cite{ref10}. These factors involve multiple domains, from the environmental factors related to the location of the patient (inpatient/nursing home/community dwelling) to the individual’s tissue health profile (see Figure \ref{risk_factors}). These domains can interact, working in opposition or in concert. This complexity highlights the challenge of PU/DTI prevention and is indicative of the need for a holistic and systematic approach. However, the multifactorial nature of PU/DTI care planning strongly implies that a universal standard approach will fail many. It is essential to recognize that every patient is an individual and that personalized care plans are essential for effective management [54,55,56]. Consideration of multi-scale risk factors from environmental conditions to tissue damage provides a pathway to personalized PU/DTI prevention to improve the health and QoL for all Veterans with SCI.
+In order to successfully prevent and treat PU/DTI in the SCI population, it is essential to consider multiple risk factors because they contribute to the formulation of treatment and rehabilitation strategies ~\cite{ref10}. These factors involve multiple domains, from the environmental factors related to the location of the patient (inpatient/nursing home/community dwelling) to the individual’s tissue health profile (see Figure \ref{risk_factors}). These domains can interact, working in opposition or in concert. This complexity highlights the challenge of PU/DTI prevention and is indicative of the need for a holistic and systematic approach. However, the multifactorial nature of PU/DTI care planning strongly implies that a universal standard approach will fail many. It is essential to recognize that every patient is an individual and that personalized care plans are essential for effective management. Consideration of multi-scale risk factors from environmental conditions to tissue damage provides a pathway to personalized PU/DTI prevention to improve the health and QoL for all Veterans with SCI.
 
 However, the integration of PU/DTI risk data, ranging from the living environment and age to tissue blood flow, requires a robust and scalable informatics approach to cope with big-data challenges in volume and complexity. PU/DTI risk data is collected using systems with a variety of different sampling rates and resolutions, with non-standard (often proprietary) data formats. For example, the clinical and demographic data of interest in PU/DTI is collected in the EMR at annual evaluations or when the Veteran attends the outpatient clinic for wound care with clinical information coded and in free form clinical text notes. Conversely, tissue oxygenation data is collected during tissue health assessments at a rate of 5Hz in a standardized format. Thus data extraction, integrated data analysis and data sharing are complex and challenging problems in PU/DTI risk data.
 
@@ -56,9 +53,9 @@ Multiple factors known to be associated with PU development were assessed at the
 
 \subsection{Specific Challenges of PU/DTI Prevention}
 
-More than 200 risk factors for PU development have been reported for individuals with SCI [12], spanning multiple domains [13]. The Center for Medicare and Medicaid Services (CMS) has determined that severe (Grade III and IV) hospital-acquired PU are completely preventable ``never-events'' and have discontinued reimbursement ~\cite{never-event}. However, the clinical reality is that many patients continue to develop significant chronic wounds, both in the community and in hospital. Patients in acute care hospitals have 33\% PU incidence rates, with prevalence rates up to 69\% ~\cite{ac-rate-ir, ac-rate-pr}. On admission to skilled nursing facilities, PU prevalence ranges between 10\% and 26\% [17,18]. Veterans with chronic SCI have incidence rates VINCI data extraction provides this information Specialized clinical assessment - usually obtained from a seating clinic or PT assessment as high as 62-80\% [19,20] and 34\% will require at least three hospitalizations for treatment [21]. PU/DTI may lead to other serious medical complications, such as osteomyelitis, sepsis and even death.
+More than 200 risk factors for PU development have been reported for individuals with SCI ~\cite{risk-factors-number}, spanning multiple domains ~\cite{risk-factors-domain}. The Center for Medicare and Medicaid Services (CMS) has determined that severe (Grade III and IV) hospital-acquired PU are completely preventable ``never-events'' and have discontinued reimbursement ~\cite{never-event}. However, the clinical reality is that many patients continue to develop significant chronic wounds, both in the community and in hospital. The prevalence of pressure ulcers – the proportion of persons with pressure ulcers at a specific point in time – in general acute care setting is 10–18\%, long-term facilities 2.3–28\%, and home care from 0–29\% \cite{ac-rate-ir, ac-rate-pr}. Veterans with chronic SCI have incidence rates as high as 62-80\% ~\cite{va-pr-up, va-pr-bot} and 34\% will require at least three hospitalizations for treatment. PU/DTI may lead to other serious medical complications, such as osteomyelitis, sepsis and even death.
 
-Primary PU/DTI prevention is encouraged as the first line of defense [22]. CPGs developed to aid clinicians in this goal combine a balance of evidence based practice and expert opinion. There are multiple CPGs for PU prevention [23,24,25,26,27], each containing similar recommendations regarding risk assessment, prevention, PU assessment, measurement, treatment and documentation however they also contain significant differences. The major challenge with all CPGs is that there are many factors to consider (see Figure \ref{risk_factors}). For example, the updated CPG from the Consortium for Spinal Cord Medicine released in September 2014 contains a summary of over 25 recommendations to be followed by the care provider [27]. However, there is still limited guidance on how to prioritize for individual cases. It is very challenging and even unrealistic to expect every recommendation to be implemented concurrently, which can be overwhelming [13]. The relative importance of risk factors has not yet been investigated, limiting care planning and prioritization of interventions.
+Primary PU/DTI prevention is encouraged as the first line of defense. CPGs developed to aid clinicians in this goal combine a balance of evidence based practice and expert opinion. There are multiple CPGs for PU prevention ~\cite{cpg1, cpg2, cpg3, cpg4}, each containing similar recommendations regarding risk assessment, prevention, PU assessment, measurement, treatment and documentation however they also contain significant differences. The major challenge with all CPGs is that there are many factors to consider (see Figure \ref{risk_factors}). For example, the updated CPG from the Consortium for Spinal Cord Medicine released in September 2014 contains a summary of over 25 recommendations to be followed by the care provider ~\cite{cpg5}. However, there is still limited guidance on how to prioritize for individual cases. It is very challenging and even unrealistic to expect every recommendation to be implemented concurrently, which can be overwhelming ~\cite{ref3}. The relative importance of risk factors has not yet been investigated, limiting care planning and prioritization of interventions.
 
 \begin{wrapfigure}{r}{0.5\textwidth}
   \begin{center}
@@ -90,12 +87,12 @@ The dedicated domain ontology Spinal Cord Injury Pressure Ulcer and Deep tissue 
 \subsection{Creation of the SCIPUDSphere environmental, social and clinical domain database}
 We ultilize MySQL as our SCIPUDSphere domain database and input data for the database are provided by synthesizing available EMR clinical data from VINCI, using a protocol based on our preliminary work. In current stage, a traditional database is sufficient to handle even more than 40,000 data entries as we don't have a column-intensive schema.
 
-{\bf Data Extraction}. In 2013, the Veterans Health Administration (VHA) launched a five year strategic plan with the goal of moving the healthcare system for our Veterans towards Personalized, Proactive, Patient-driven Health care, delivered across the continuum from prevention through tertiary care and end of life [31]. Data were extracted from a retrospective chart review from more than 40,000 encounters recorded in the VHA including all those with ICD-9-CM codes of 344.00 and 344.1 during the 5 year period prior to start of the study. We extracted raw data from VINCI using a stratified ICD-9 code search and stored as a deidentified .csv format file. Data formats will include categorical, numerical and free form text in clinical notes. Data to be collected includes factors in the prototype SCIPUD together with others that have been identified as being possibly related to PU/DTI development or healing either in cross-sectional or other observational studies. We are particularly interested in possible differences in PU/DTI risk based on level and extent of injury.
+{\bf Data Extraction}. In 2013, the Veterans Health Administration (VHA) launched a five year strategic plan with the goal of moving the healthcare system for our Veterans towards Personalized, Proactive, Patient-driven Health care, delivered across the continuum from prevention through tertiary care and end of life ~\cite{vha_plan}. Data were extracted from a retrospective chart review from more than 40,000 encounters recorded in the VHA including all those with ICD-9-CM codes of 344.00 and 344.1 during the 5 year period prior to start of the study. We extracted raw data from VINCI using a stratified ICD-9 code search and stored as a deidentified .csv format file. Data formats will include categorical, numerical and free form text in clinical notes. Data to be collected includes factors in the prototype SCIPUD together with others that have been identified as being possibly related to PU/DTI development or healing either in cross-sectional or other observational studies. We are particularly interested in possible differences in PU/DTI risk based on level and extent of injury.
 
 {\bf Data Processing}. The extracted data from the VINCI data are stored as a deidentified .csv format file. Prior to importing data into the SCIPUDSphere User Interface, we need to process the data in order to identifier the comprehensive domains for categorical risk factor and handle the missing value. After acquring the comprehensive domains for categorical risk factors, we then mapped the data into corresponding domains value and saved these data into new CSV files. Finally, we imported the mapped data into the SCIPUDSphere User Interface.
 
 \subsection{SCIPUDSphere User Interface}
-Validated extracted data are collated using our established standard data collection forms and imported to the Physio-MIMI based integrated PU/DTI risk assessment SCIPUDSphere platform. The Physio-MIMI backbone will provide extensible, scalable, and high performance data management for storing and accessing rapidly large volumes of data. Reliable data storage through automated data replication and data integrity verification will ensure consistent data availability and effective disaster recovery with off-site data backup. Data quality assurance and metadata version control will be managed using a combination of GitHub, JSON, and the open-source NSSR data management environment [63]. A visual query interface is adapted from OnWARD to allow all clinicians to directly query the PU/DTI risk data via a set of easily usable visual widgets that will be directly populated with the SCIPUDO classes to allow clinicians to flexibly construct queries, specific to the patient. All patient data are stored in a firewall protected secure environment with role-based access control and audit-trail logging. 
+Validated extracted data are collated using our established standard data collection forms and imported to the Physio-MIMI based integrated PU/DTI risk assessment SCIPUDSphere platform. The Physio-MIMI backbone will provide extensible, scalable, and high performance data management for storing and accessing rapidly large volumes of data. Reliable data storage through automated data replication and data integrity verification will ensure consistent data availability and effective disaster recovery with off-site data backup. Data quality assurance and metadata version control will be managed using a combination of GitHub, JSON, and the open-source NSSR data management environment ~\cite{nsrr}. A visual query interface is adapted from OnWARD to allow all clinicians to directly query the PU/DTI risk data via a set of easily usable visual widgets that will be directly populated with the SCIPUDO classes to allow clinicians to flexibly construct queries, specific to the patient. All patient data are stored in a firewall protected secure environment with role-based access control and audit-trail logging. 
 
 The ability of interface to query risk data is dependent on the ontological mapping. The Query Builder provides the user interface to formulate the necessary patterns - allowing the construction of a logical query. The logical query is translated into a local database query based on the mapping between the ontology model and the database specific data model dynamically.
 
@@ -238,29 +235,41 @@ https://www.hsrd.research.va.gov/for\_researchers/vinci/
 Goodman, B.L., Schindler, A.A., Washington, M.M., Bogie, K.M., and Ho, C.H. Factors in rehospitalisation for severe pressure ulcer care in spinal cord injury/disorders. Journal of Wound Care. 2014; 23: 165–175.
 \bibitem{stages}
 Fuhrer MJ, Garber SL, Rintala DH, Clearman R, Hart KA. Pressure ulcers in community-resident persons with spinal cord injury: prevalence and risk factors. Arch Phys Med Rehabil. 1993;74(11):1172–7.
+\bibitem{risk-factors-number}
+Coleman S., Gorecki C., Nelson E.A., Close S.J., Defloor T., Halfens R., Farrin A., Brown J., Schoonhoven L. \& Nixon J. (2013) Patient risk factors for pressure ulcer development: systematic review. International Journal of Nursing Studies 50, 974–1003.
+\bibitem{risk-factors-domain}
+Coleman S., Nixon J., Keen J., Wilson L., McGinnis E., Dealey C., Stubbs N., Farrin A., Dowding D., Schols J.M.G.A., Cuddigan J., Berlowitz D., Jude E., Vowden P., Schoonhoven L., Bader D.L., Gefen A., Oomens C.W.J. \& Nelson E.A. (2014) A new pressure ulcer conceptual framework. Journal of Advanced Nursing. doi:10.1111/jan.12405.
 \bibitem{never-event}
 Zaratkiewicz S, Whitney JD, Lowe JR, Taylor S, O’Donnell F, Minton-Foltz P. Development and Implementation of a Hospital-Acquired Pressure Ulcer Incidence Tracking System and Algorithm. Journal for healthcare quality : official publication of the National Association for Healthcare Quality. 2010;32(6):44-51. doi:10.1111/j.1945-1474.2010.00076.x.
 \bibitem{ac-rate-ir}
-Fuhrer MJ, Garber SL, Rintala DH, Clearman R, Hart KA. Pressure ulcers in community-resident persons with spinal cord injury: prevalence and risk factors. Arch Phys Med Rehabil 1993;74(11):1172–7.
+Salcido R, Popescu A, Potter A, Talavera F, Kolaski K, Allen K, et al. Pressure ulcers and wound care. [Accessed 2012 February 14] Medscape Available from: http://www.emedicine.medscape.com/article/31984-overview.
 \bibitem{ac-rate-pr}
-Regan MA, Teasell RW, Wolfe DL, Keast D, Mortenson WB, Aubut JA. A systematic review of therapeutic interventions for pressure ulcers after spinal cord injury. Arch Phys Med Rehabil 2009;90(2):213–31.
-
+Dorner B, Posthauer ME, Thomas D. The role of nutrition in pressure ulcer prevention and treatment: National Pressure Ulcer Advisory Panel white paper. Adv Skin Wound Care 2009;22(5):212–21.
+\bibitem{va-pr-up}
+Pressure ulcers in community-resident persons with spinal cord injury: prevalence and risk factors.
+Fuhrer MJ, Garber SL, Rintala DH, Clearman R, Hart KA
+Arch Phys Med Rehabil. 1993 Nov; 74(11):1172-7.
+\bibitem{va-pr-bot}
+Regan MA, Teasell RW, Wolfe DL, Keast D, Mortenson WB, Aubut JA. A systematic review of therapeutic interventions for pressure ulcers after spinal cord injury. Arch Phys Med Rehabil 2009;90(2):213–31
+\bibitem{cpg1}
+Pressure Ulcer Prevention and Treatment Following Spinal Cord Injury: A Clinical Practice Guideline for Health-Care Professionals. http://www.pva.org/media/pdf/CPG\_Pressure\%20Ulcer.pdf.
+\bibitem{cpg2}
+Canadian Best Practice Guidelines for the Prevention and Management of Pressure Ulcers in People with Spinal Cord Injury. http://onf.org/system/attachments/168/original/Pressure\_Ulcers\_Best\_Practice\_Guideline\_Final\_web4.pdf.
+\bibitem{cpg3}
+Prevention and Treatment of Pressure Ulcers: Quick Reference Guide. https://www.npuap.org/wp-content/uploads/2014/08/Updated-10-16-14-Quick-Reference-Guide-DIGITAL-NPUAP-EPUAP-PPPIA-16Oct2014.pdf.
+\bibitem{cpg4}
+Outcomes Following Traumatic Spinal Cord Injury: Clinical Practice Guidelines for Health-Care Professionals. http://www.pva.org/media/pdf/CPG\_outcomes\%20following\%20traumatic\%20SCI.pdf.
+\bibitem{cpg5}
+Neurogenic Bowel Management in Adults with Spinal Cord Injury. http://www.pva.org/media/pdf/cpg\_neurogenic\%20bowel.pdf.
+\bibitem{vha_plan}
+2013 VHA Workforce Succession Strategic Plan. https://www.vacareers.va.gov/assets/common/print/2013\_VHA\_Workforce\_Succession\_Strategic\_Plan.pdf
 \bibitem{physiomimi}
 Zhang G-Q, Siegler T, Saxman P, et al. VISAGE: A Query Interface for Clinical Research. Summit on Translational Bioinformatics. 2010;2010:76-80.
 \bibitem{onward}
 Tran V-A, Johnson N, Redline S, Zhang G-Q. OnWARD: Ontology-driven Web-based Framework for Multi-center Clinical Studies. Journal of biomedical informatics. 2011;44(Suppl 1):S48-S53. doi:10.1016/j.jbi.2011.08.019.
-\bibitem{ref11}
-Liu, Y.;Wang, Y.; Jin, Y. Research on the improvement of MongoDB Auto-Sharding in cloud environment. In Proceedings of 7th International Conference on Computer Science \& Education (ICCSE), Melbourne, Australia, 14–17 July 2012; pp. 851–854.
-\bibitem{ref12}
-Kanade, A.; Gopal, A.; Kanade, S. A study of normalization and embedding in MongoDB. In Proceedings of the 2014 IEEE International Conference on Advance Computing Conference (IACC), Gurgaon, India, 21–22 February 2014; pp. 416–421.
-\bibitem{ref13}
-Cui L, Huang Y, Tao S, Lhatoo SD, Zhang GQ. ODaCCI: Ontology-guided Data Curation for Multisite Clinical Research Data Integration in the NINDS Center for SUDEP Research. AMIA Annual Symp Proc 2016, pp. 441-450.
-\bibitem{ref14}
+\bibitem{nsrr}
 National Sleep Research Resource. https://sleepdata.org/datasets.
-\bibitem{ref15}
-Aniceto R, Xavier R, Guimarães V, et al. Evaluating the Cassandra NoSQL Database Approach for Genomic Data Persistency. International Journal of Genomics. 2015;2015:502795. doi:10.1155/2015/502795.
-\bibitem{ref16}
-Dinov ID, Heavner B, Tang M, et al. Predictive Big Data Analytics: A Study of Parkinson’s Disease Using Large, Complex, Heterogeneous, Incongruent, Multi-Source and Incomplete Observations. Draganski B, ed. PLoS ONE. 2016;11(8):e0157077. doi:10.1371/journal.pone.0157077.
+
 
 \end{thebibliography}
 }
