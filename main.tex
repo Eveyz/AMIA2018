@@ -66,12 +66,12 @@ Primary PU/DTI prevention is encouraged as the first line of defense. CPGs devel
 \end{wrapfigure}
 
 \subsection{Physio-MIMI and OnWARD}
-Zhang et al. have developed the Physio-MIMI cloud-based multi-modal data storage and access platform \cite{physiomimi}. Physio-MIMI creates a common user interface for data queries and enables development of compatible analytical tools and easier sharing of complex data from multiple domains to support collaborative clinical and translational research using diverse data types. 
+Zhang et al. developed the Physio-MIMI cloud-based multi-modal data storage and access platform \cite{physiomimi}. It creates a common user interface for data queries and enables development of compatible analytical tools and easier sharing of complex data from multiple domains to support collaborative clinical and translational research using diverse data types. 
 
 Another system, OnWARD (Ontology-driven Web-based Research Data Capture) \cite{onward}, provides robust flexibility of input data storage in a relational database for detailed analysis. OnWARD can be quickly deployed and customized for any clinical study and has demonstrably eased the data entry burden in multiple clinical trials. 
 
 \section{Method}
-The design of SCIPUDSphere involves three seamlessly integrated modules: SCIPUDO Ontology Support, Creation of the SCIPUDSphere environmental, social and clinical domain database and SCIPUDSphere User Interface. Agile development and agile project management methodologies were used to achieve a flexible and user-friendly web-based data management tool in the Ruby on Rails framework. Figure \ref{architecture} demonstrates the architecture of SCIPUDSphere system. 
+The design of SCIPUDSphere involves three seamlessly integrated modules: SCIPUDO Ontology Support, creation of the SCIPUDSphere environmental, social and clinical domain database and SCIPUDSphere User Interface. Agile development and agile project management methodologies were used to achieve a flexible and user-friendly web-based data management tool in the Ruby on Rails framework ~\cite{ror}. Figure \ref{architecture} demonstrates the architecture of SCIPUDSphere system. 
 
 \begin{figure}[h!]
   \centering
@@ -81,6 +81,7 @@ The design of SCIPUDSphere involves three seamlessly integrated modules: SCIPUDO
 \end{figure}
 
 % Analysis of multiple PU/DTI risk factors requires a robust and scalable informatics approach to cope with challenges in volume and complexity. 
+
 \subsection{SCIPUDO Ontology Support}
 The dedicated domain ontology Spinal Cord Injury Pressure Ulcer and Deep tissue injury ontology (SCIPUDO) were created by reusing terminology from existing systems ranging from anatomy (SNOMED CT), disease classification (ICD-9 and 10), medication (RxNorm), and NINDS Data Elements. The SCIPUDO consists of a set of concepts (terms) in the PU/DTI domain and the relationships between the concepts. By employing the SCIPUDO, a standard set of terminology can be employed while allowing individual data contributors to maintain data according to their desired schema. Such ontology then can be plugged into our Physio-MIMI system to power the operation of SCIPUDSphere User Interface.
 
@@ -88,18 +89,16 @@ The dedicated domain ontology Spinal Cord Injury Pressure Ulcer and Deep tissue 
 
 {\bf Data Extraction}. In 2013, the Veterans Health Administration (VHA) launched a five year strategic plan with the goal of moving the healthcare system for our Veterans towards Personalized, Proactive, Patient-driven Health care, delivered across the continuum from prevention through tertiary care and end of life ~\cite{vha_plan}. The VA has built a Corporate Data Warehouse (CDW) within VINCI to support this effort which contains detailed data about each encounter a patient has with a VA medical service.  We used this CDW as the source of patient data for our system. 
 
-% Data were extracted from a retrospective chart review from more than 40,000 encounters recorded in the VHA including all those with ICD-9-CM codes of 344.00 and 344.1 during the 5 year period prior to start of the study. We extracted raw data from VINCI using a stratified ICD-9 code search and stored as a deidentified .csv format file. Data formats will include categorical, numerical and free form text in clinical notes. Data to be collected includes factors in the prototype SCIPUD together with others that have been identified as being possibly related to PU/DTI development or healing either in cross-sectional or other observational studies. We are particularly interested in possible differences in PU/DTI risk based on level and extent of injury.
-
-Early in the project we needed do decide where to host our software. We use an iterative development process where developers work closely with the end users to identify desired changes to the application. Developers implement these changes and we update our application before repeating the cyle. This lets us implement the most valuable features as quickly as possible.
+Early in the project we needed do decide where we should host our software. We use an agile development process where developers work closely with the end users to identify desired changes to the application. Developers implement these changes and we update our application before repeating the cyle. This lets us implement the most valuable features as quickly as possible. This development process provides many small changes applied to the servers rather than a few large updates.
 
 {\bf Data Processing}. The extracted data from the VINCI data are stored as a deidentified .csv format file. Prior to importing data into the SCIPUDSphere User Interface, we need to process the data in order to identifier the comprehensive domains for categorical risk factor and handle the missing value. After acquring the comprehensive domains for categorical risk factors, we then mapped the data into corresponding domains value and saved these data into new CSV files. Finally, we imported the mapped data into the SCIPUDSphere User Interface.
 
 \subsection{SCIPUDSphere User Interface}
-Validated extracted data are collated using our established standard data collection forms and imported to the Physio-MIMI based integrated PU/DTI risk assessment SCIPUDSphere platform. The Physio-MIMI backbone will provide extensible, scalable, and high performance data management for storing and accessing rapidly large volumes of data. Reliable data storage through automated data replication and data integrity verification will ensure consistent data availability and effective disaster recovery with off-site data backup. Data quality assurance and metadata version control will be managed using a combination of GitHub, JSON, and the open-source NSSR data management environment ~\cite{nsrr}. A visual query interface is adapted from OnWARD to allow all clinicians to directly query the PU/DTI risk data via a set of easily usable visual widgets that will be directly populated with the SCIPUDO classes to allow clinicians to flexibly construct queries, specific to the patient. All patient data are stored in a firewall protected secure environment with role-based access control and audit-trail logging. 
+Validated extracted data are collected using our established standard data collection forms and imported to the Physio-MIMI based integrated PU/DTI risk assessment SCIPUDSphere platform. The Physio-MIMI backend provides extensible, scalable, and high performance data management for storing and rapidly accessing large volumes of data. A visual query interface is adapted from OnWARD to allow all clinicians to directly query the PU/DTI risk data via a set of easily usable visual widgets that will be directly populated with the SCIPUDO classes to allow clinicians to flexibly construct queries, specific to the patient. The ability to query risk data depends on the ontological mapping. The Query Builder provides the user interface to formulate the patterns necessary to construct a logical query. The logical query is translated dynamically into a local database query based on the mapping between the ontology model and the database specific data model.
 
 Hosting it in VINCI's secure infrastructure would allow us to use identified data and provide quick updates to data. The disadvantages to this is only one member of the development team has credentials to access the VINCI and the process of implementing our incremental development process would be difficult.
 
-Our study data are restricted to the dates ranging from October 1, 2010 to September 30, 2015, thus we expect few, if any, updates once we developed the proper queries.  We also have no requirements that need identified data, thus we could create deidentified records and export them.  We decided to host our application external to VINCI ased on these considerations and deidentify the data before exporting them from VINCI.
+Our study data are restricted to the dates ranging from October 1, 2010 to September 30, 2015, thus we expected few, if any, updates once we developed the proper queries and datasets.  We also have no requirements that need identified data, thus we could create deidentified records and export them.  We decided to host our application external to VINCI based on these considerations and deidentify the data before exporting them from VINCI.
 
 \section{Preliminary Results}
 In this section, we will first present the preliminary results for data extraction, integration in our domain database, then show the query interface.  
@@ -128,13 +127,11 @@ We are still researching the discrepancy between the number of patients containe
   \end{tabular}
 \end{table}
 
-% \subsection{SCIPUDSphere User Interface}
-% Validated extracted data are collated using our established standard data collection forms and imported to the Physio-MIMI based integrated PU/DTI risk assessment SCIPUDSphere platform. The Physio-MIMI backbone will provide extensible, scalable, and high performance data management for storing and accessing rapidly large volumes of data. Reliable data storage through automated data replication and data integrity verification will ensure consistent data availability and effective disaster recovery with off-site data backup. Data quality assurance and metadata version control will be managed using a combination of GitHub, JSON, and the open-source NSSR data management environment ~\cite{nsrr}. A visual query interface is adapted from OnWARD to allow all clinicians to directly query the PU/DTI risk data via a set of easily usable visual widgets that will be directly populated with the SCIPUDO classes to allow clinicians to flexibly construct queries, specific to the patient. All patient data are stored in a firewall protected secure environment with role-based access control and audit-trail logging. 
-
-% The ability of interface to query risk data is dependent on the ontological mapping. The Query Builder provides the user interface to formulate the necessary patterns - allowing the construction of a logical query. The logical query is translated into a local database query based on the mapping between the ontology model and the database specific data model dynamically. 
+\section{Preliminary Results}
+In this section, we present the preliminary results for the query interface. 
 
 \subsection{SCIPUDSphere User Interface}
-We adapted the domain ontology SCIPUDO into the highly adaptable Physio-MIMI system and developed SCIPUDSphere User Interface. The ability of interface to query risk data is dependent on the ontological mapping. The Query Builder provides the user interface to formulate the necessary patterns - allowing the construction of a logical query. The logical query is translated into a local database query based on the mapping between the ontology model and the database specific data model dynamically.
+We adapted the domain ontology SCIPUDO into the highly adaptable Physio-MIMI system and developed SCIPUDSphere User Interface. 
 
 \begin{figure}[h!]
   \centering
@@ -144,13 +141,13 @@ We adapted the domain ontology SCIPUDO into the highly adaptable Physio-MIMI sys
 \end{figure}
 
 \subsubsection{Query Builder}
-Shown as below (Figure \ref{interface}), the query builder interface consists of a set of drop-down menus that are directly populated with the SCIPUDO classes. This allows users to flexibly construct queries. The query interface has been implemented using Rails 5.0, an agile web development framework and is integrated with SCIPUDSphere system, which provides an integrated environment for investigators for risk factors identification. The Query Manager saves queries for future reuse, which can be searched by keywords in title, description, or the query itself. We omit the description of Query Manager since the functionalities of this component is similar to that of an email management application.
+Shown below, (Figure \ref{interface}), the query builder interface consists of a set of drop-down menus that are directly populated with the SCIPUDO classes. This allows users to flexibly construct queries. The SCIPUDSphere system provides an integrated environment for investigators to identify risk factors. The Query Manager saves queries for future reuse, which can be searched by keywords in title, description, or the query itself. We omit the description of Query Manager since the functionalities of this component is similar to that of an email management application.
 
 \vspace{-3mm}
 \begin{itemize}
 \setlength\itemsep{0em}
   \item SCIPUDO is displayed in the form of a set of drop-down menus. There are two modes for user to build queris. One is browse mode, and the other is search mode. In the search mode, users can search specific risk factors by typing their names, while in the browser mode users can expand the drop-down menus to select risk factors.
-  \item Query Widget is a set of criteria which will be translated into local database query langauge dynamically. User can interactively select domains they are interested in and determine numberic range by specify the bottom and top range. For example, the query in Figure \ref{interface} will be translated into: select patients whose age are between 0 to 199, who are male or female, and all marital status like married, separate and so. 
+  \item Query Widget is a set of criteria which will be translated into local database query langauge dynamically. User can interactively select domains they are interested in and specify numberic ranges by selecting the minimum and maximum values for the range. For example, the query in Figure \ref{interface} will be translated into: select patients whose age are between 0 to 199, who are male or female, and all marital status selected
   \item Query Result will show the distince number of patients who statisfy the criteria built in the query widget. In this example, the query result is 35,247.
 \end{itemize}
 \vspace{-3mm}
@@ -166,15 +163,13 @@ The graphical exploration interface has been designed and implemented to support
 \end{figure}
 
 \subsubsection{Case-control exploration}
-The case-control exploration interface allows users to perform cross-cohort case-
-control analyses. It provides a general template for users to build a case-control
-exploration step by step. Step 1 is to set base query terms, where users can specify the criteria for base population (e.g., age between 45 and 85 years, race is American Indian or Alaska Native, and no history of AIDS). Step 2 is to set the condition for cases (e.g., bed type is standard). Step 3 is to set the condition for controls (e.g. bed type is hospital). Step 4 is to set the match terms (e.g., gender and marital status). Step 5 is to set outcome terms (e.g., level of injury). The result of the case-control exploration is displayed as a table with case and control counts for the match and outcome terms.
-
+The case-control exploration interface allows users to perform cross-cohort case-control analyses. It provides a general template for users to build a case-control exploration step by step. Step 1 is to set base query terms, where users can specify the criteria for base population (e.g., age between 45 and 85 years, race is American Indian or Alaska Native, and no PU history). Step 2 is to set the condition for cases (e.g., bed type is standard). Step 3 is to set the condition for controls (e.g. bed type is hospital). Step 4 is to set the match terms (e.g., gender and marital status). Step 5 is to set outcome terms (e.g., level of injury). The result of the case-control exploration is displayed as a table with case and control counts for the match and outcome terms.
 
 \section{Evaluation}
 In this section, we evaluated SCIPUDSphere from data import, query performance. For data import, we recorded the time spent in importing data into MySQL. For query performance, we set up several sets of risk factors that are composed of single concepts as well as combined concepts to evaluate our query performance based on the query time.
 
-All these evaluations are conducted on a computer consisted of Intel Core i5 processor and 8 GB RAM.
+All these evaluations are conducted on a computer consisted of Intel Core i5 processor, 8 GB RAM and SSD storage.
+  
 \subsection{Data Import Time}
 
 Table 2 shows the import time for different datasets respectively. We only measured the actual import time necessary for performing the data import without considering the data preprocessing part. It is shown that importing risk data into our domain database took about several minutes which depend on the size of risk data to import.
@@ -209,14 +204,14 @@ To evaluate our query performance using Mysql as the backend database, we conduc
 \end{table}
 
 \section{Discussion}
-SCIPUDSphere demonstrates the capability of extracting and integrating large scale of risk data. Besides, SCIPUDSphere user interface is a powerful, comprehensive risk factor data query interface. Utilizing MySQL as the domain database, our query interface can achieve fast query performance along with rich useful functions like graphical exploration, case-control exploration. Users can sign up in our interface, save their queries, retrieve and redo these queries afterward. 
+SCIPUDSphere demonstrates the capability of extracting and integrating large scale of risk data. The SCIPUDSphere user interface is a powerful, comprehensive risk factor data query interface. Utilizing MySQL as the domain database, our query interface can achieve fast query performance along with rich useful functions like graphical exploration, case-control exploration. Users can sign up in our interface, save their queries, retrieve and redo these queries afterward. 
 
-One limitation in the SCIPUDSphere system is that we use traditional relational database as our domain database, which could potentially be improved by using NoSQL databases. Besides, in current stage, we only extracted three main categories data, which are demographics, co-morbidities, and patient SCI diagnosis data respectively. Our ultimate goal is to extract, integrate all the targeted data from VINCI to our SCIPUDSphere system, and to creat the environmental, social and clinical domain database. Then we can perform a more comprehensive and systematic evaluations, including usability evaluation. 
+One limitation in the SCIPUDSphere system is that we use traditional relational database as our domain database, which could potentially be improved by using NoSQL databases. Besides, in current stage, we only extracted three main categories data, which are demographics, co-morbidities, and patient SCI diagnosis data respectively. Our ultimate goal is to extract, integrate all the targeted data from VINCI to our SCIPUDSphere system, and to create the environmental, social and clinical domain databases. Then we can perform a more comprehensive and systematic evaluations, including usability evaluation. 
 
 \section{Conclusion}
-In this paper, we introduce a bioinformatics platform, called SCIPUDSphere, to enable data extraction, storage, and analysis to provide clinical decision support and user interface providing access to well-annotated and de-identified data generated from multiple domains. We created a dedicated Spinal Cord Injury Pressure Ulcer and Deep tissue injury ontology (SCIPUDO) as the knowledge resource for processing specialized terms related to SCI, PU and DTI. We extracted the demographics, co-morbidities, and patient SCI diagnosis data from VINCI. Besides, through adapting existing tools: Physio-MIMI and OnWARD, we successfully implemented a powerful and intuitive user interface that empowers researchers to quickly pinpoint the desired risk factor and perform exploratory query.
+In this paper, we introduce a bioinformatics platform, called SCIPUDSphere, to enable data extraction, storage, and analysis to provide clinical decision support and user interface providing access to well-annotated and de-identified data generated from multiple domains. We created a dedicated Spinal Cord Injury Pressure Ulcer and Deep tissue injury ontology (SCIPUDO) as the knowledge resource for processing specialized terms related to SCI, PU and DTI. We extracted the demographics, co-morbidities, and patient SCI diagnosis data from VINCI. By adapting existing tools: Physio-MIMI and OnWARD, we successfully implemented a powerful and intuitive user interface that empowers researchers to quickly pinpoint possible risk factors and perform exploratory queries.
 
-SCIPUDSphere is rather promising, given its ability in scaling well with the data volume and efficiently querying risk factor data. We notice that choosing MySQL as our backend database do guarantee fast and reliable query performance.
+SCIPUDSphere is promising, given its ability in storing large volume of data and efficiently querying risk factor data. Using MySQL as our backend database provides fast and reliable query performance.
 
 % For future development, we will explore more NoSQL databases like Hadoop Hbase and compare their performance with MongoDB. Doing so, we hope to add more options to grappling with large-scale sleep data and explore more Big Data solutions to help sleep research community to advance with the rapidly increasing sleep data and provide enough computational power.
 
@@ -292,6 +287,8 @@ Neurogenic Bowel Management in Adults with Spinal Cord Injury. http://www.pva.or
 Zhang G-Q, Siegler T, Saxman P, et al. VISAGE: A Query Interface for Clinical Research. Summit on Translational Bioinformatics. 2010;2010:76-80.
 \bibitem{onward}
 Tran V-A, Johnson N, Redline S, Zhang G-Q. OnWARD: Ontology-driven Web-based Framework for Multi-center Clinical Studies. Journal of biomedical informatics. 2011;44(Suppl 1):S48-S53. doi:10.1016/j.jbi.2011.08.019.
+\bibitem{ror}
+Ruby on Rails; 2018. <http://rubyonrails.org> [accessed 03.03.18].
 \bibitem{nsrr}
 National Sleep Research Resource. https://sleepdata.org/datasets.
 
