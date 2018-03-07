@@ -138,7 +138,14 @@ Shown as below (Figure \ref{interface}), the query builder interface consists of
 \vspace{-3mm}
 
 \subsubsection{Graphical exploration}
-The graphical exploration interface has been designed and implemented to support visual exploration of two risk factors (suppose x and y corresponding to x-axis and y-axis). There are bar plots and box plots in the graphical views. Bar plots are shown when the y-axis is a categorical type of data, and box plots are displayed when the y-axis is a numeric type of data. Such plots power users to have a better understanding of the data distribution of y against x.
+The graphical exploration interface has been designed and implemented to support visual exploration of two risk factors (suppose x and y corresponding to x-axis and y-axis). There are bar plots and box plots in the graphical views. Bar plots are shown when the y-axis is a categorical type of data, and box plots are displayed when the y-axis is a numeric type of data. Such plots power users to have a better understanding of the data distribution of y against x. Figure ~\cite{graphical} illustrates the box plots of risk factor age. Below the box plots, some summary statistics are also provided. If the risk factor is numeric, then min, median, max, and mean number are all caculated as seen from the figure.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.35]{pics/graphical.png}
+  \caption{Graphical Exploration for Age}
+  \label{graphical}
+\end{figure}
 
 \subsubsection{Case-control exploration}
 The case-control exploration interface allows users to perform cross-cohort case-
