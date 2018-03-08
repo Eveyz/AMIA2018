@@ -211,6 +211,7 @@ To evaluate our query performance using Mysql as the backend database, we conduc
 \end{table}
 
 \section{Discussion}
+\subsection{Features}
 SCIPUDSphere is an informatics system with the ability and flexibility to
 \begin{itemize}
   \item leverage existing tools that were created in our previous researches and we upgraded such tools to keep current with modern software development. In such way, we eased the burden of building things from scratch and accelerated our research progress as we can focus on the real challenges.
@@ -220,6 +221,7 @@ SCIPUDSphere is an informatics system with the ability and flexibility to
 \end{itemize}
 Utilizing MySQL as the domain database, our query interface can achieve fast query performance along with rich useful functions like graphical exploration, case-control exploration. Users can sign up in our interface, save their queries, retrieve and redo these queries afterward. With these features, we believe it can help to identify potential risk factors for individuals with SCI and prevent PU/DTI. 
 
+\subsection{Limitations}
 One limitation in SCIPUDSphere system is that we use traditional the relational database as our domain database, which could potentially be improved by using NoSQL databases. Another limitation is that we have not conducted any scalability evaluations in terms of large-scale user requests. In the meanwhile, our data size is limited. In the current stage, we only extracted three main categories data, which are demographics, co-morbidities, and patient SCI diagnosis data respectively. Our ultimate goal is to extract all PU/DTI risk data described in SCIPUDO from VINCI and import to our SCIPUDSphere system. Then we can perform more comprehensive and systematic evaluations, including usability and scalability evaluations. All these limitaions can be addressed in the future.
 
 % \section{Future work}
