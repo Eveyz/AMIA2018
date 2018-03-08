@@ -4,64 +4,56 @@
 \usepackage[superscript,nomove]{cite}
 \usepackage{enumitem}
 \usepackage{wrapfig}
+\usepackage{tabularx}
 
 \begin{document}
 
 
 \title{An Interactive Data Repository for Studying Risk Factors Associated with Pressure Ulcer Resulting from Spinal Cord Injury}
 
-\author{Ningzhou Zeng$^{1,2}$, Steve Roggenkamp$^{1,2}$, Shiqiang Tao, PhD$^{1,2}$, Kath M. Bogie D.Philabd, PhD$^{3,4,5}$, GQ Zhang, PhD$^{1,2}$}
+\author{Ningzhou Zeng$^{1,2}$, Steve Roggenkamp$^{1,2}$, Shiqiang Tao, PhD$^{1,2}$, Kath Bogie, DPhil$^{3,4}$, GQ Zhang, PhD$^{1,2}$}
 
 \institutes{
   $^1$Institute for Biomedical Informatics, University of Kentucky, Lexington, KY\\
   $^2$Department of Computer Science, University of Kentucky, Lexington, KY\\
   $^3$Advanced Platform Technology Center, Louis Stokes Cleveland Department of Veterans Affairs Medical Center, Cleveland, OH\\
-  $^4$Department of Biomedical Engineering, Case Western Reserve University, Cleveland, OH\\
-  $^5$Department of Orthopaedics, Case Western Reserve University, Cleveland, OH\\
+  $^4$Department of Orthopaedics, Case Western Reserve University, Cleveland, OH\\
 }
 
 \maketitle
 
 \noindent{\bf Abstract}
 
-\textit{Pressure Ulcer (PU) and Deep Tissue Injury (DTI) are serious and common among those individuals with spinal cord injury (SCI), which come at tremendous personal and societal cost. Primary PU/DTI prevention plays a critical role in the first line of defense, while it is also challenging as there are many risk factors ranging from the individual’s environment to local tissue health to consider. Besides, there is limited guidance on how to prioritize based on individual cases along with the standardized clinical practical guidelines. In this paper, we present the SCIPUDSphere - a bioinformatics platform, enables data extraction, storage, and analysis to provide clinical decision support and user interface providing a single point of web-based access to well-annotated and de-identified data generated from multiple domains within the Veterans Administration's VA Informatics and Computing Infrastructure (VINCI) electronic health records.}
+\textit{Pressure Ulcer (PU) and Deep Tissue Injury (DTI) are serious conditions among those individuals with spinal cord injury (SCI), which come at tremendous personal and societal cost. Primary PU/DTI prevention plays a critical role in the first line of defense, while it is also challenging as there are many risk factors ranging from the individual’s environment to local tissue health to consider. This paper presents SCIPUDSphere - an informatics platform, that enables data extraction, storage, and analysis to provide clinical decision support and user interface for PU/DTI prevention care planning. We extracted a total of 268,562 records containing 282 ICD9 codes related to SCI among 105,599 individuals for demographics, co-morbidities and patient SCI diagnosis from Veterans Administration's VA Informatics and Computing Infrastructure (VINCI) electronic health records and imported these data into SCIPUDSphere. SCIPUDSphere provides a single point of web-based access to de-identified data acquired from VINCI. Preliminary evaluation results demonstrate the capability of SCIPUDSphere in PU/DTI risk data storage, analysis and query.}
 
-\section{Introduction}
-Pressure Ulcer and Deep Tissue Injury are serious and costly complications for some populations, such as those with spinal cord injury (SCI), who remain at high risk throughout their lifetimes. Clinical observations and research have demonstrated staggering costs and human suffering ~\cite{ref1,ref2,ref3}. In addition to the psychological distress and detrimental effects on quality of life (QoL) for the individual, chronic wounds place a significant burden on health care systems, with US costs estimated to be up to \$15 billion per year, with an individual PU costing as much as \$37,800 - \$70,000 to treat  ~\cite{ref4,ref5,ref6}.
+\section*{Introduction}
+Pressure Ulcer (PU) and Deep Tissue Injury (DTI) are serious and costly complications for some populations, such as those with spinal cord injury (SCI), who remain at high risk throughout their lifetimes. Clinical observations and research have demonstrated staggering costs and human suffering ~\cite{ref1,ref2,ref3} for PU/DTI. In addition to the psychological distress and detrimental effects on quality of life (QoL) for the individual, chronic wounds place a significant burden on health care systems, with US costs estimated to be up to \$15 billion per year, with an individual PU costing as much as \$37,800 - \$70,000 to treat  ~\cite{ref4,ref5,ref6}.
 
 Primary PU/DTI prevention seeks to prevent the initial incidence of any tissue damage, while secondary PU/DTI prevention seeks to decrease chronic recurrence of tissue breakdown for the individual ~\cite{ref7}. It has been estimated that PU prevention is approximately 2.5 times more economical than treatment ~\cite{ref8}. Clinical practice guidelines (CPG) provide best practice recommendations, however, the many recommendations in a CPG reflect the multivariate nature of PU/DTI management. There is limited guidance on how to prioritize based on individual cases. The Agency for Health Care Policy and Research (AHCPR) has long recognized that there is a significant need to increase education and quality improvement methods ~\cite{ref9}. Forward thinking tactics are essential for the development of effective PU/DTI management tools to address this major consequence of SCI and guide personalized best practices for each individual.
 
-In order to successfully prevent and treat PU/DTI in the SCI population, it is essential to consider multiple risk factors because they contribute to the formulation of treatment and rehabilitation strategies ~\cite{ref10}. These factors involve multiple domains, from the environmental factors related to the location of the patient (inpatient/nursing home/community dwelling) to the individual’s tissue health profile (see Figure \ref{risk_factors}). These domains can interact, working in opposition or in concert. This complexity highlights the challenge of PU/DTI prevention and is indicative of the need for a holistic and systematic approach. However, the multifactorial nature of PU/DTI care planning strongly implies that a universal standard approach will fail many for many patients. It is essential to recognize that every patient is an individual and that personalized care plans are essential for effective management. Consideration of multi-scale risk factors from environmental conditions to tissue damage provides a pathway to personalized PU/DTI prevention to improve the health and QoL for all Veterans with SCI.
+In order to successfully prevent and treat PU/DTI in the SCI population, it is essential to consider multiple risk factors because they contribute to the formulation of treatment and rehabilitation strategies ~\cite{ref10}. These factors involve multiple domains, from the environmental factors related to the location of the patient (inpatient/nursing home/community dwelling) to the individual’s tissue health profile. These domains can interact, working in opposition or in concert. This complexity highlights the challenge of PU/DTI prevention and is indicative of the need for a holistic and systematic approach. However, the multifactorial nature of PU/DTI care planning strongly implies that a universal standard approach will fail many for many patients. It is essential to recognize that every patient is an individual and that personalized care plans are essential for effective management. Consideration of multi-scale risk factors from environmental conditions to tissue damage provides a pathway to personalized PU/DTI prevention to improve the health and QoL for all Veterans with SCI.
 
 However, the integration of PU/DTI risk data, ranging from the living environment and age to tissue blood flow, requires a robust and scalable informatics approach to cope with big-data challenges in volume and complexity. PU/DTI risk data is collected using systems with a variety of different sampling rates and resolutions, with non-standard (often proprietary) data formats. For example, the clinical and demographic data of interest in PU/DTI is collected in the electronic medical record (EMR) at annual evaluations or when the Veteran attends the outpatient clinic for wound care with clinical information coded and in free form clinical text notes. Conversely, tissue oxygenation data is collected during tissue health assessments at a rate of 5Hz in a standardized format. Thus data extraction, integrated data analysis, and data sharing are complex and challenging problems in PU/DTI risk data.
 
-In this paper, we present a bioinformatics platform, called SCIPUDSphere. SCIPUDSphere is a platform that enables data extraction, storage, and analysis to provide clinical decision support and user interface providing access to well-annotated and de-identified data generated from multiple domains. SCIPUDSphere uses a novel Spinal Cord Injury Pressure Ulcer and Deep tissue injury ontology (SCIPUDO) as the knowledge resource for processing specialized terms related to SCI, PU, and DTI. The SCIPUDSphere enables extracting a tremendous amount of data from VA Informatics and Computing Infrastructure ~\cite{VINCI} and integrating PU/DTI risk data, ranging from the living environment and age to tissue blood flow. 
+In this paper, we present a clinical informatics platform, called SCIPUDSphere. SCIPUDSphere is a web-based system that enables data extraction, storage and analysis to provide clinical decision support and user interface providing access to well-annotated and de-identified data generated from multiple domains. SCIPUDSphere uses a novel Spinal Cord Injury Pressure Ulcer and Deep tissue injury ontology (SCIPUDO) as the knowledge resource for processing specialized terms related to SCI, PU and DTI. The SCIPUDSphere enables extracting a tremendous amount of data from VA Informatics and Computing Infrastructure ~\cite{VINCI} and integrating PU/DTI risk data, ranging from the living environment and age to tissue blood flow. 
 
 \section{Background}
 
 \subsection{VA Informatics and Computing Infrastructure (VINCI)}
 VA Informatics and Computing Infrastructure (VINCI) ~\cite{VINCI} is an initiative to improve researchers' access to VA data and to facilitate the analysis of those data while ensuring Veterans' privacy and data security. VINCI hosts many datasets and provides many types of analytical applications. Researchers can access the VA data and tools for reporting and analysis in a secure Workspace called VINCI Workspace. VINCI provides EMR data storage for all healthcare encounters within the Veterans Health Administration (VHA), updated on a daily basis. 
 
-\subsection{Preliminary development of SCIPUD}
-The first generation SCIPUD was created at the Louis Stokes Cleveland VA Medical Center (LSCDVAMC) by a multidisciplinary team included a physician, staff nurses, physical and occupational therapists, a dietician, biostatisticians and a public health specialist. A literature review \cite{literature_review} together with consultations with clinical experts was conducted to determine PU risk factors under the categories of basic demographic information, SCI/D history, equipment, medications, co-morbidities and environment. Data were obtained through retrospective chart reviews of persons with SCI/D admitted to the LSCDVAMC for PU care and extracted from the electronic Computerized Patient Record System (CPRS).
+% \subsection{Preliminary development of SCIPUD}
+% The first generation SCIPUD was created at the Louis Stokes Cleveland VA Medical Center (LSCDVAMC) by a multidisciplinary team included a physician, staff nurses, physical and occupational therapists, a dietician, biostatisticians and a public health specialist. A literature review \cite{literature_review} together with consultations with clinical experts was conducted to determine PU risk factors under the categories of basic demographic information, Spinal Cord Injury Disorder (SCI/D) history, equipment, medications, co-morbidities and environment. Data were obtained through retrospective chart reviews of persons with SCI/D admitted to the LSCDVAMC for PU care and extracted from the electronic Computerized Patient Record System (CPRS).
 
-SCIPUD was established with longitudinal data including all admission time points during the initial study timeframe. All data were collected using standardized data collection forms reviewed by Spinal Cord Injury Disorder (SCI/D) clinical experts and pilot tested for accuracy and completeness of data. A data collection manual was also developed to ensure inter- and intra-rater reliability of data collection. The manual was used to train study personnel on the data collection form and chart review methods. Data collectors were trained prior to data collection to prevent misclassification of data in the clinical record. Data collection forms were completed independently by three study staff using the same patient for chart review. Data obtained by chart review was then compared between staff. All data collected was equivalent and accurate compared to the chart record. Oversight was provided by a content expert knowledgeable on CPRS and SCI/D to further ensure the reliability of data.
+% SCIPUD was established with longitudinal data including all admission time points during the initial study timeframe. All data were collected using standardized data collection forms reviewed by SCI/D clinical experts and pilot tested for accuracy and completeness of data. A data collection manual was also developed to ensure inter- and intra-rater reliability of data collection. The manual was used to train study personnel on the data collection form and chart review methods. Data collectors were trained prior to data collection to prevent misclassification of data in the clinical record. Data collection forms were completed independently by three study staff using the same patient for chart review. Data obtained by chart review was then compared between staff. All data collected was equivalent and accurate compared to the chart record. Oversight was provided by a content expert knowledgeable on CPRS and SCI/D to further ensure the reliability of data.
 
-Multiple factors known to be associated with PU development were assessed at the admission timepoint and entered into SCIPUD. An initial study was carried out to investigate the significance of risk factors for rehospitalization (RHA) for severe (Stage III or IV) PU ~\cite{stages}. Using SCIPUD, we found that factors previously found to be predictive of initial PU development may not be predictive of RHA. Specifically, demographic factors showed no significant association with RHA, while clinical factors such as duration of injury and sub-optimally managed spasticity (SMS) were significantly associated with higher RHA. These preliminary findings provide indications of the ongoing need to develop and review adaptive PU/DTI prevention care plans.
+% Multiple factors known to be associated with PU development were assessed at the admission timepoint and entered into SCIPUD. An initial study was carried out to investigate the significance of risk factors for rehospitalization (RHA) for severe (Stage III or IV) PU ~\cite{stages}. Using SCIPUD, we found that factors previously found to be predictive of initial PU development may not be predictive of RHA. Specifically, demographic factors showed no significant association with RHA, while clinical factors such as duration of injury and sub-optimally managed spasticity (SMS) were significantly associated with higher RHA. These preliminary findings provide indications of the ongoing need to develop and review adaptive PU/DTI prevention care plans.
 
 \subsection{Specific Challenges of PU/DTI Prevention}
 
 More than 200 risk factors for PU development have been reported for individuals with SCI ~\cite{risk-factors-number}, spanning multiple domains ~\cite{risk-factors-domain}. The Center for Medicare and Medicaid Services (CMS) has determined that severe (Grade III and IV) hospital-acquired PU are completely preventable ``never-events'' and have discontinued reimbursement ~\cite{never-event}. However, the clinical reality is that many patients continue to develop significant chronic wounds, both in the community and in hospital. The prevalence of pressure ulcers - the proportion of persons with pressure ulcers at a specific point in time - in general acute care setting is 10-18\%, long-term facilities 2.3-28\%, and home care from 0-29\% \cite{ac-rate-ir, ac-rate-pr}. Veterans with chronic SCI have incidence rates as high as 62-80\% ~\cite{va-pr-up, va-pr-bot} and 34\% will require at least three hospitalizations for treatment. PU/DTI may lead to other serious medical complications, such as osteomyelitis, sepsis and even death.
 
-Primary PU/DTI prevention is encouraged as the first line of defense. CPGs developed to aid clinicians in this goal combine a balance of evidence based practice and expert opinion. There are multiple CPGs for PU prevention ~\cite{cpg1, cpg2, cpg3, cpg4}, each containing similar recommendations regarding risk assessment, prevention, PU assessment, measurement, treatment and documentation. However they also contain significant differences. The major challenge with all CPGs is that there are many factors to consider (see Figure \ref{risk_factors}). For example, the updated CPG from the Consortium for Spinal Cord Medicine released in September 2014 contains a summary of over 25 recommendations to be followed by the care provider ~\cite{cpg5}. However, there is still limited guidance on how to prioritize for individual cases. It is very challenging and even unrealistic to expect every recommendation to be implemented concurrently, which can be overwhelming ~\cite{ref3}. The relative importance of risk factors has not yet been investigated, limiting care planning and prioritization of interventions.
-
-\begin{wrapfigure}{r}{0.5\textwidth}
-  \begin{center}
-    \includegraphics[scale=0.5]{pics/risk_factors.png}
-  \end{center}
-  \caption{Multiple risk factor domains contribute to PU/DTI risk}
-  \label{risk_factors}
-\end{wrapfigure}
+Primary PU/DTI prevention is encouraged as the first line of defense. CPGs developed to aid clinicians in this goal combine a balance of evidence based practice and expert opinion. There are multiple CPGs for PU prevention ~\cite{cpg1, cpg2, cpg3, cpg4}, each containing similar recommendations regarding risk assessment, prevention, PU assessment, measurement, treatment and documentation. However they also contain significant differences. The major challenge with all CPGs is that there are many factors to consider. For example, the updated CPG from the Consortium for Spinal Cord Medicine released in September 2014 contains a summary of over 25 recommendations to be followed by the care provider ~\cite{cpg5}. However, there is still limited guidance on how to prioritize the multiple recommendations for individual cases. It is very challenging and even unrealistic to expect every recommendation to be implemented concurrently, which can be overwhelming ~\cite{ref3}. The relative importance of risk factors has not yet been investigated, limiting care planning and prioritization of interventions.
 
 \subsection{Physio-MIMI and OnWARD}
 Zhang et al. developed the Physio-MIMI cloud-based multi-modal data storage and access platform \cite{physiomimi}. It creates a common user interface for data queries and enables development of compatible analytical tools and easier sharing of complex data from multiple domains to support collaborative clinical and translational research using diverse data types. 
@@ -85,13 +77,30 @@ Early in the project, we needed to decide where we should host our software. We 
 % Analysis of multiple PU/DTI risk factors requires a robust and scalable informatics approach to cope with challenges in volume and complexity. 
 
 \subsection{SCIPUDO Ontology Support}
-The dedicated domain ontology Spinal Cord Injury Pressure Ulcer and Deep tissue injury ontology (SCIPUDO) were created by reusing terminology from existing systems ranging from anatomy (SNOMED CT), disease classification (ICD-9 and 10), medication (RxNorm), and NINDS Data Elements. The SCIPUDO consists of a set of concepts (terms) in the PU/DTI domain and the relationships between the concepts. By employing the SCIPUDO, a standard set of terminology can be employed while allowing individual data contributors to maintain data according to their desired schema. Such ontology was then plugged into our Physio-MIMI system to power the operation of SCIPUDSphere User Interface.
+The dedicated domain ontology Spinal Cord Injury Pressure Ulcer and Deep tissue injury ontology (SCIPUDO) were created by reusing terminology from existing systems ranging from anatomy (SNOMED CT), disease classification (ICD-9 and 10), medication (RxNorm), and NINDS Data Elements. The SCIPUDO consists of a set of concepts (terms) in the PU/DTI domain and the relationships between the concepts. By employing the SCIPUDO, a standard set of terminology can be employed while allowing individual data contributors to maintain data according to their desired schema. Such ontology was then plugged into our Physio-MIMI system to power the operation of SCIPUDSphere User Interface. Table~\ref{ontology} shows the main ontological dimensions of SCIPUDO. 
+
+\begin{table}
+  \begin{tabularx}{\textwidth}{|l|X|l|X|X|}
+    \hline
+    \textbf{Personal}  & \textbf{Environmental} & \textbf{Clinical} & \textbf{Social} & \textbf{Tissue health} \\ \hline
+    Demographics  &  Access to specialized clinical care & AIS level & Equipment use & Tissue oxygenation under load \\ \hline
+    Smoking       & Access to transportation & Duration of injury & Domestic living status & Skin \& muscle blood flow under load \\ \hline
+    BMI  &  Rural or urban  & Comorbidities & & Muscle composition \\ \hline
+    Nutritional status & Air quality & Medications & & \\ \hline
+  \end{tabularx}
+  \caption{SCIPUDO Ontological Main Dimensions}
+  \label{ontology}
+\end{table}
 
 \subsection{Creation of the SCIPUDSphere environmental, social and clinical domain database}
 
-{\bf Data Extraction}. In 2013, the Veterans Health Administration (VHA) launched a five year strategic plan with the goal of moving the healthcare system for our Veterans towards Personalized, Proactive, Patient-driven Health care, delivered across the continuum from prevention through tertiary care and end of life ~\cite{vha_plan}. The VA has built a Corporate Data Warehouse (CDW) within VINCI to support this effort which contains detailed data about each encounter a patient has with a VA medical service. We used this CDW as the source of patient data for our system. 
+{\bf Data Extraction}. The development of the enhanced Spinal Cord Injury Pressure Ulcer and Deep tissue injury (SCIPUD) Resource was created at the Louis Stokes Cleveland VA Medical Center (LSCDVAMC) by a multidisciplinary team included a physician, staff nurses, physical and occupational therapists, a dietician, biostatisticians and a public health specialist. A literature review \cite{literature_review} together with consultations with clinical experts was conducted to determine PU risk factors under the categories of basic demographic information, Spinal Cord Injury Disorder (SCI/D) history, equipment, medications, co-morbidities and environment. Data were obtained through retrospective chart reviews of persons with SCI/D admitted to the LSCDVAMC for PU care and extracted from the electronic Computerized Patient Record System (CPRS).
 
-Hosting it in VINCI's secure infrastructure would allow us to use identified data and provide quick updates to data. The disadvantages to this are only one member of the development team has credentials to access the VINCI and the process of implementing our incremental development process would be difficult. Besides, it is impossible to deploy our application in VINCI's secure infrastructure.
+SCIPUD was established with longitudinal data including all admission time points during the initial study timeframe. All data were collected using standardized data collection forms reviewed by SCI/D clinical experts and pilot tested for accuracy and completeness of data. A data collection manual was also developed to ensure inter- and intra-rater reliability of data collection. The manual was used to train study personnel on the data collection form and chart review methods. Data collectors were trained prior to data collection to prevent misclassification of data in the clinical record. Data collection forms were completed independently by three study staff using the same patient for chart review. Data obtained by chart review was then compared between staff. All data collected was equivalent and accurate compared to the chart record. Oversight was provided by a content expert knowledgeable on CPRS and SCI/D to further ensure the reliability of data.
+
+Multiple factors known to be associated with PU development were assessed at the admission timepoint and entered into SCIPUD. An initial study was carried out to investigate the significance of risk factors for rehospitalization (RHA) for severe (Stage III or IV) PU ~\cite{stages}. Using SCIPUD, researchers found that factors previously found to be predictive of initial PU development may not be predictive of RHA. Specifically, demographic factors showed no significant association with RHA, while clinical factors such as duration of injury and sub-optimally managed spasticity (SMS) were significantly associated with higher RHA. These preliminary findings provide indications of the ongoing need to develop and review adaptive PU/DTI prevention care plans. 
+
+The development of SCIPUD provides us with a solid foundation and clear direction about risk factors data extraction. Based on SCIPUD, we leverage the power of the rich data resource provided by the VINCI. VINCI provides unprecedented access to the world’s largest EMR data source and the many Veterans with SCI served by the VHA. The VA has built a Corporate Data Warehouse (CDW) within VINCI to support this effort which contains detailed data about each encounter a patient has with a VA medical service. We used this CDW as the source of patient data for our system. Hosting data in VINCI's secure infrastructure would allow us to use identified data and provide quick updates to data. The disadvantages to this are only one member of the development team has credentials to access the VINCI and the process of implementing our incremental development process would be difficult. Besides, it is impossible to deploy our application in VINCI's secure infrastructure.
 
 We observed that our study data were restricted to the dates ranging from October 1, 2010 to September 30, 2015, thus we expected few, if any, updates once we developed the proper queries and datasets. We also had no requirements that need identified data, thus we could create deidentified records and export them. We decided to host our application external to VINCI based on these considerations and deidentify the data before exporting them from VINCI.
 
@@ -106,7 +115,7 @@ In this section, we will first present the preliminary results for data extracti
 We utilize MySQL as our SCIPUDSphere domain database and input data for the database are provided by synthesizing available EMR clinical data from VINCI, using a protocol based on our preliminary work. At our current stage of development, a traditional database is sufficient to handle even more than 40,000 data entries as we don't have a column-intensive schema.
 
 \subsection{Creation of the SCIPUDSphere environmental, social and clinical domain database}
-{\bf Data Extraction}. A member of the VINCI team provided a cohort of 36,628 VA patients having ICD9 codes associated with SCI. Our study is limited to interactions with patients between October 1, 2010 through September 30, 2015, after which the VA converted to ICD10 coding. We identified twelve tables containing identified patient data and queries of these tables provided 18,808,408 records containing ICD9 codes for 36,581 individuals.  We filtered this table to produce a table with 76,553 records containing 66 ICD9 codes related to SCI for 36,580 individuals and another table containing 153,930 records of 32,396 individuals with a total of 216 ICD9 codes for comorbidities included in our study.
+{\bf Data Extraction}. A member of the VINCI team provided a cohort of 36,628 VA patients having ICD9 codes associated with SCI. Our study is limited to interactions with patients between October 1, 2010 through September 30, 2015, after which the VA converted to ICD10 coding. We identified twelve tables containing identified patient data and queries of these tables provided 18,808,408 records containing ICD9 codes for 36,581 individuals.  We filtered this table to produce a table with 76,553 records containing 66 ICD9 codes related to SCI for 36,580 individuals and another table containing 153,930 records of 32,396 individuals with a total of 216 ICD9 codes for co-morbidities included in our study.
 
 We needed to deidentify this data to comply with HIPAA and VA requirements. We accomplished this by computing the SHA256 hash for a unique identifier assigned by the VA to each patient and reporting the first and last year within the study period and the number of times the ICD9 code was recorded for the individual in this period.  Using SHA256 hashes as patient identifiers allow us to assemble data from multiple sources as long as we can reliably generate the same hash for a given patient.
 
@@ -116,7 +125,6 @@ We are still researching the discrepancy between the number of patients containe
 
 \begin{table}[!ht]
 \centering
-\caption{Summary of Extracted Risk Data from VINCI}
   \begin{tabular}{|l|l|l|l|}
   \hline
     \textbf{Dataset}  & \textbf{Number of Data Records} & \textbf{Number of Patients} \\ \hline
@@ -125,6 +133,7 @@ We are still researching the discrepancy between the number of patients containe
     Patient SCI diagnosis  &  76,553  & 36,580 \\ \hline
     Total & 268,562 & 105,599 \\ \hline
   \end{tabular}
+  \caption{Summary of Extracted Risk Data from VINCI}
   \label{summary}
 \end{table}
 
@@ -164,7 +173,7 @@ The graphical exploration interface has been designed and implemented to support
 The case-control exploration interface allows users to perform cross-cohort case-control analyses. It provides a general template for users to build a case-control exploration step by step. Step 1 is to set base query terms, where users can specify the criteria for base population (e.g., age between 45 and 85 years, race is American Indian or Alaska Native, and no PU history). Step 2 is to set the condition for cases (e.g., bed type is standard). Step 3 is to set the condition for controls (e.g. bed type is hospital). Step 4 is to set the match terms (e.g., gender and marital status). Step 5 is to set outcome terms (e.g., level of injury). The result of the case-control exploration is displayed as a table with case and control counts for the match and outcome terms.
 
 \section{Evaluation}
-In this section, we evaluated SCIPUDSphere from data import, query performance. For data import, we recorded the time spent in importing data into MySQL. For query performance, we set up several sets of risk factors that are composed of a  single risk factor as well as combined risk factors to evaluate our query performance based on the query time.
+In this section, we evaluated SCIPUDSphere from aspects of data import, query performance. For data import, we recorded the time spent in importing data into MySQL. For query performance, we set up several sets of risk factors that are composed of a  single risk factor as well as combined risk factors to evaluate our query performance based on the query time.
 
 All these evaluations were conducted on a computer consisted of Intel Core i5 processor, 8 GB RAM, and SSD storage.
 
@@ -174,14 +183,14 @@ Table 2 shows the import time for different datasets respectively. We only measu
 
 \begin{table}[!ht]
 \centering
-\caption{Import Time}
   \begin{tabular}{|l|l|l|l|l|}
   \hline
     \textbf{Dataset}  & \textbf{Import time 1} & \textbf{Import time 2} & \textbf{Import time 3} & \textbf{Average} \\ \hline
-    Demographic & 240.7s & 232.7s & 231.1s & 234.8s  \\ \hline
+    Demographics & 240.7s & 232.7s & 231.1s & 234.8s  \\ \hline
     Co-morbidities  & 930.3s & 934.7s & 928.7s & 913.2s  \\ \hline
     Patient SCI diagnosis  & 440.6s & 466.1s & 467.9s & 458.2s \\ \hline
   \end{tabular}
+  \caption{Import Time}
 \end{table}
 
 \subsection{Query Performance}
@@ -189,7 +198,6 @@ To evaluate our query performance using Mysql as the backend database, we conduc
 
 \begin{table}[!ht]
 \centering
-\caption{Query Performance of SCIPUDSphere User Interface}
   \begin{tabular}{|l|l|l|l|l|}
   \hline
     \textbf{Query Concepts}  & \textbf{Query Time 1} & \textbf{Query Time 2} & \textbf{Query Time 3} & \textbf{Average} \\ \hline
@@ -199,27 +207,33 @@ To evaluate our query performance using Mysql as the backend database, we conduc
     Marital Status   & 0.269s & 0.249s & 0.276s & 0.264s \\ \hline
     Race, Gender, Age & 0.657s & 0.684s & 0.613s & 0.651s \\ \hline
   \end{tabular}
+  \caption{Query Performance of SCIPUDSphere User Interface}
 \end{table}
 
 \section{Discussion}
-Our development reused some tools that were created in our previous researches and we upgraded such tools to keep current with modern software development. In such way, we eased the burden of building things from scratch and accelerated our research progress as we can focus on the real challenges. 
+SCIPUDSphere is an informatics system with the ability and flexibility to
+\begin{itemize}
+  \item leverage existing tools that were created in our previous researches and we upgraded such tools to keep current with modern software development. In such way, we eased the burden of building things from scratch and accelerated our research progress as we can focus on the real challenges.
+  \item support dedicated domain ontology
+  \item extract and integrate large scale PU/DTI risk data
+  \item provide a single point of web-based access to de-identified PU/DTI risk data
+\end{itemize}
+Utilizing MySQL as the domain database, our query interface can achieve fast query performance along with rich useful functions like graphical exploration, case-control exploration. Users can sign up in our interface, save their queries, retrieve and redo these queries afterward. With these features, we believe it can help to identify potential risk factors for individuals with SCI and prevent PU/DTI. 
 
-SCIPUDSphere demonstrates the capability of extracting and integrating large scale of risk data. The SCIPUDSphere user interface is a powerful, comprehensive risk factors data query interface. We believe it can help to identify potential risk factors for individuals with SCI and prevent PU/DTI. Utilizing MySQL as the domain database, our query interface can achieve fast query performance along with rich useful functions like graphical exploration, case-control exploration. Users can sign up in our interface, save their queries, retrieve and redo these queries afterward. 
+One limitation in SCIPUDSphere system is that we use traditional the relational database as our domain database, which could potentially be improved by using NoSQL databases. Another limitation is that we have not conducted any scalability evaluations in terms of large-scale user requests. In the meanwhile, our data size is limited. In the current stage, we only extracted three main categories data, which are demographics, co-morbidities, and patient SCI diagnosis data respectively. Our ultimate goal is to extract all PU/DTI risk data described in SCIPUDO from VINCI and import to our SCIPUDSphere system. Then we can perform more comprehensive and systematic evaluations, including usability and scalability evaluations. All these limitaions can be addressed in the future.
 
-One limitation in the SCIPUDSphere system is that we use traditional the relational database as our domain database, which could potentially be improved by using NoSQL databases. Another one is that we have not conducted any scalability evaluations in terms of large-scale user requests. Besides, our data size is limited. In the current stage, we only extracted three main categories data, which are demographics, co-morbidities, and patient SCI diagnosis data respectively. Our ultimate goal is to extract, integrate all the targeted data from VINCI to our SCIPUDSphere system, and to create the environmental, social and clinical domain database. Then we can perform more comprehensive and systematic evaluations, including usability and scalability evaluations. 
-
-\section{Future work}
-The initial experience with the development of SCIPUDSphere strengthens our confidence that a user-friendly tool for rapid development of ontology-driven web-based deidentified data management for PU/DTI risk data can be accomplished. There are features that we anticipate will be added to the current framework: (1) extracting all targeted risk factors and import these extracted data into our system, (2) implement the reporting interface.
+% \section{Future work}
+% The initial experience with the development of SCIPUDSphere strengthens our confidence that a user-friendly tool for rapid development of ontology-driven web-based deidentified data management for PU/DTI risk data can be accomplished. There are features that we anticipate will be added to the current framework: (1) extracting all targeted risk factors and import these extracted data into our system, (2) implement the reporting interface.
 
 \section{Conclusion}
-In this paper, we introduce a bioinformatics platform, called SCIPUDSphere, to enable data extraction, storage, and analysis to provide clinical decision support and user interface providing access to well-annotated and de-identified data generated from multiple domains. We created a dedicated Spinal Cord Injury Pressure Ulcer and Deep tissue injury ontology (SCIPUDO) as the knowledge resource for processing specialized terms related to SCI, PU, and DTI. We extracted the demographics, co-morbidities, and patient SCI diagnosis data from VINCI. By adapting existing tools: Physio-MIMI and OnWARD, we successfully implemented a powerful and intuitive user interface that empowers researchers to quickly pinpoint possible risk factors and perform exploratory queries.
+In this paper, we introduce an informatics platform, called SCIPUDSphere, that enables data extraction, storage, and analysis to provide clinical decision support and user interface providing access to well-annotated and de-identified data generated from multiple domains. We created a dedicated Spinal Cord Injury Pressure Ulcer and Deep tissue injury ontology (SCIPUDO) as the knowledge resource for processing specialized terms related to SCI, PU, and DTI. We extracted the demographics, co-morbidities, and patient SCI diagnosis data from VINCI. By adapting existing tools: Physio-MIMI and OnWARD, we successfully implemented a powerful and intuitive user interface that empowers researchers to quickly pinpoint possible risk factors and perform exploratory queries.
 
-SCIPUDSphere is promising, given its ability in storing large volume of data and efficiently querying risk factor data. Using MySQL as our backend database provides fast and reliable query performance.
+SCIPUDSphere is promising, given its ability in storing large volume of PU/DTI risk factor data and efficiently querying those data. Using MySQL as our backend database provides fast and reliable query performance.
 
 % For future development, we will explore more NoSQL databases like Hadoop Hbase and compare their performance with MongoDB. Doing so, we hope to add more options to grappling with large-scale sleep data and explore more Big Data solutions to help sleep research community to advance with the rapidly increasing sleep data and provide enough computational power.
 
 \textbf{ACKNOWLEDGMENTS}\\
-The authors thank the University of Kentucky Center for Clinical and Translational Science (Clinical and Translational Science Award UL1TR001998), as well as........
+The authors thank the University of Kentucky Center for Clinical and Translational Science (Clinical and Translational Science Award UL1TR001998), and DOD Spinal Cord Injury Research Program (SCIRP) award W81XWH-15-1-0342.
 
 \makeatletter
 \renewcommand{\@biblabel}[1]{\hfill #1.}
